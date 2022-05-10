@@ -3,6 +3,7 @@
     package="com.windypermadi.adminjilbabqu">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,6 +11,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminJilBabQu">
+        <activity
+            android:name=".menu.LaporanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".menu.PenjualanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".menu.produk.DetailProdukActivity"
+            android:exported="false" />
+        <activity
+            android:name=".menu.produk.TambahProdukActivity"
+            android:exported="false" />
+        <activity
+            android:name=".menu.ProdukActivity"
+            android:exported="false" />
+        <activity
+            android:name=".menu.KategoriActivity"
+            android:exported="false" />
         <activity
             android:name=".auth.LoginActivity"
             android:exported="true">
@@ -21,9 +40,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>
