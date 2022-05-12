@@ -1,18 +1,27 @@
 package com.windypermadi.adminjilbabqu;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.windypermadi.adminjilbabqu.auth.LoginActivity;
+import com.windypermadi.adminjilbabqu.auth.SessionManager;
+import com.windypermadi.adminjilbabqu.helper.utils.CekKoneksi;
+import com.windypermadi.adminjilbabqu.helper.utils.CustomProgressbar;
 import com.windypermadi.adminjilbabqu.menu.KategoriActivity;
 import com.windypermadi.adminjilbabqu.menu.LaporanActivity;
 import com.windypermadi.adminjilbabqu.menu.PenjualanActivity;
 import com.windypermadi.adminjilbabqu.menu.ProdukActivity;
 import com.windypermadi.adminjilbabqu.menu.produk.TambahProdukActivity;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+    CustomProgressbar customProgress = CustomProgressbar.getInstance();
+    CekKoneksi koneksi = new CekKoneksi();
+    public SessionManager SessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

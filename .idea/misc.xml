@@ -13,15 +13,17 @@
         <entry key="app/src/main/res/layout/activity_detail_produk.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_kategori.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_laporan.xml" value="0.11" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.1890625" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.10055701227937362" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_penjualan.xml" value="0.175" />
         <entry key="app/src/main/res/layout/activity_produk.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_tambah_produk.xml" value="0.175" />
         <entry key="app/src/main/res/layout/custom_error_dialog.xml" value="0.1" />
         <entry key="app/src/main/res/layout/custom_no_internet_dialog.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/custom_progressbar.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/custom_success_dialog.xml" value="0.1" />
         <entry key="app/src/main/res/layout/custom_upload_dialog.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/model_list_kategori.xml" value="0.25" />
         <entry key="app/src/main/res/layout/model_list_penjualan.xml" value="0.25" />
       </map>
     </option>

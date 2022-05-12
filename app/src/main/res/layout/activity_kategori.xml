@@ -61,8 +61,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/text1"
-                android:layout_marginBottom="10dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/btn_grey"
                 android:fontFamily="@font/poppins_medium"
                 android:hint="Masukkan Kategori"
@@ -90,6 +90,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/text_simpan"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_alignParentBottom="true"
