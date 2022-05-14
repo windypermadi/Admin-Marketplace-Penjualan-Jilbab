@@ -34,27 +34,21 @@ public class MainActivity extends AppCompatActivity {
     private void ActionButton() {
         findViewById(R.id.cv1).setOnClickListener(v -> {
             startActivity(new Intent(this, KategoriActivity.class));
-            finish();
         });
         findViewById(R.id.cv2).setOnClickListener(v -> {
             startActivity(new Intent(this, TambahProdukActivity.class));
-            finish();
         });
         findViewById(R.id.cv3).setOnClickListener(v -> {
             startActivity(new Intent(this, ProdukActivity.class));
-            finish();
         });
         findViewById(R.id.cv4).setOnClickListener(v -> {
             startActivity(new Intent(this, PenjualanActivity.class));
-            finish();
         });
         findViewById(R.id.cv5).setOnClickListener(v -> {
             startActivity(new Intent(this, LaporanActivity.class));
-            finish();
         });
         findViewById(R.id.text_logout).setOnClickListener(v -> {
             startActivity(new Intent(this, LoginActivity.class));
-            finish();
         });
     }
 

@@ -71,19 +71,17 @@ public class KategoriActivity extends AppCompatActivity {
     }
 
     private void TambahData() {
-        AndroidNetworking.get(Connection.CONNECT + "AdminKategori.php")
-                .addQueryParameter("username", username)
-                .addQueryParameter("email", email)
-                .addQueryParameter("password", password)
-                .addQueryParameter("alamat", alamat)
-                .addQueryParameter("telp", telp)
+        AndroidNetworking.post(Connection.CONNECT + "AdminKategori.php")
+                .addBodyParameter("tag", "tambah")
+                .addBodyParameter("nama_kategori", et_nama.getText().toString().trim())
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
                         CustomDialog.successDialog(KategoriActivity.this, response.optString("pesan"));
-                        finish();
+                        et_nama.setText("");
+                        onResume();
                     }
 
                     @Override

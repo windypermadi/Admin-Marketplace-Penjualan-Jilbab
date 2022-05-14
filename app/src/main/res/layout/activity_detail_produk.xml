@@ -58,10 +58,32 @@
                     app:cardUseCompatPadding="true">
 
                     <ImageView
+                        android:id="@+id/img"
                         android:layout_width="match_parent"
                         android:layout_height="280dp"
                         android:src="@color/colorGrey2" />
                 </androidx.cardview.widget.CardView>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp">
+
+                    <EditText
+                        android:id="@+id/et_gambar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorGrey"
+                        android:drawableEnd="@drawable/ic_icon_upload"
+                        android:drawableTint="@color/black"
+                        android:hint="Pilih Gambar"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:textColorHint="@color/black"
+                        android:textSize="@dimen/fontsize15"
+                        tools:ignore="Autofill,HardcodedText,UnusedAttribute" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -75,6 +97,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/colorGrey"
                         android:hint="ID Kategori"
+                        android:focusable="false"
                         android:maxLines="1"
                         android:textColorHint="@color/black"
                         android:textSize="@dimen/fontsize15"
@@ -95,6 +118,7 @@
                         android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
                         android:drawableTint="@color/black"
                         android:hint="Kategori Barang"
+                        android:focusable="false"
                         android:maxLines="1"
                         android:textColorHint="@color/black"
                         android:textSize="@dimen/fontsize15"
@@ -117,6 +141,46 @@
                         android:textColorHint="@color/black"
                         android:textSize="@dimen/fontsize15"
                         tools:ignore="Autofill,HardcodedText,UnusedAttribute" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="0dp"
+                        app:cardUseCompatPadding="true"
+                        tools:ignore="MissingConstraints">
+
+                        <RelativeLayout
+                            android:layout_width="180dp"
+                            android:layout_height="180dp"
+                            android:layout_margin="10dp">
+
+                            <ImageView
+                                android:id="@+id/img_upload"
+                                android:layout_width="150dp"
+                                android:layout_height="150dp"
+                                android:layout_centerInParent="true"
+                                android:background="@drawable/btn_grey_outline"
+                                android:padding="20dp"
+                                android:src="@drawable/ic_icon_upload_pilih_gambar"
+                                tools:ignore="ContentDescription" />
+
+                            <ImageView
+                                android:id="@+id/btn_upload"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentBottom="true"
+                                android:background="@drawable/circle_button"
+                                android:padding="10dp"
+                                android:src="@drawable/ic_baseline_add_photo_alternate_24"
+                                app:tint="@color/white"
+                                tools:ignore="ContentDescription" />
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -152,27 +216,7 @@
                         android:hint="Jumlah Barang"
                         android:inputType="number"
                         android:maxLines="1"
-                        android:textColorHint="@color/black"
-                        android:textSize="@dimen/fontsize15"
-                        tools:ignore="Autofill,HardcodedText,UnusedAttribute" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp">
-
-                    <EditText
-                        android:id="@+id/et_gambar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/colorGrey"
-                        android:drawableEnd="@drawable/ic_icon_upload"
-                        android:drawableTint="@color/black"
-                        android:hint="Pilih Gambar"
-                        android:inputType="number"
-                        android:maxLines="1"
+                        android:text="0"
                         android:textColorHint="@color/black"
                         android:textSize="@dimen/fontsize15"
                         tools:ignore="Autofill,HardcodedText,UnusedAttribute" />
@@ -192,6 +236,8 @@
                         android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
                         android:drawableTint="@color/black"
                         android:hint="Status Diskon"
+                        android:focusable="false"
+                        android:clickable="false"
                         android:maxLines="1"
                         android:textColorHint="@color/black"
                         android:textSize="@dimen/fontsize15"
@@ -205,12 +251,15 @@
                     android:layout_margin="4dp">
 
                     <EditText
+                        android:visibility="gone"
                         android:id="@+id/et_diskon"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/colorGrey"
                         android:hint="Jumlah Diskon (%)"
                         android:maxLines="1"
+                        android:maxLength="2"
+                        android:text="0"
                         android:textColorHint="@color/black"
                         android:textSize="@dimen/fontsize15"
                         tools:ignore="Autofill,HardcodedText,UnusedAttribute" />
