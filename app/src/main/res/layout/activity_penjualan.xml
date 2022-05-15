@@ -40,6 +40,7 @@
         android:weightSum="2">
 
         <TextView
+            android:id="@+id/text_belum"
             android:layout_margin="4dp"
             android:layout_width="0dp"
             android:layout_height="45dp"
@@ -52,6 +53,7 @@
             android:layout_weight="1"/>
 
         <TextView
+            android:id="@+id/text_sudah"
             android:layout_margin="4dp"
             android:layout_width="0dp"
             android:layout_height="45dp"

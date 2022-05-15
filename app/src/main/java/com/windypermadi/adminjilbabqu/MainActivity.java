@@ -16,17 +16,25 @@ import com.windypermadi.adminjilbabqu.menu.PenjualanActivity;
 import com.windypermadi.adminjilbabqu.menu.ProdukActivity;
 import com.windypermadi.adminjilbabqu.menu.produk.TambahProdukActivity;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     CustomProgressbar customProgress = CustomProgressbar.getInstance();
     CekKoneksi koneksi = new CekKoneksi();
     public SessionManager SessionManager;
+    public static String iduser, username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SessionManager = new SessionManager(MainActivity.this);
+        SessionManager.checkLogin();
+        HashMap<String, String> user = SessionManager.getUserDetails();
+        iduser = user.get(SessionManager.KEY_ID);
+        username = user.get(SessionManager.KEY_USERNAME);
 
         ActionButton();
     }

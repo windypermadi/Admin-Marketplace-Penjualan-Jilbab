@@ -139,10 +139,25 @@ public class DetailProdukActivity extends AppCompatActivity {
                                 et_diskon.setText(diskon);
                                 et_jumlah.setText(stok);
 
+                                if (status_diskon2.equals("Y")){
+                                    status_diskon = "Y";
+                                    et_status.setText("Ada Diskon");
+                                    et_diskon.setVisibility(View.VISIBLE);
+                                } else {
+                                    status_diskon = "N";
+                                    et_status.setText("Tidak Ada Diskon");
+                                    et_diskon.setVisibility(View.GONE);
+                                }
+
                                 Glide.with(getApplicationContext())
-                                        .load(gambar)
+                                        .load(gambar2)
                                         .error(R.color.colorGrey2)
                                         .into(img);
+
+                                Glide.with(getApplicationContext())
+                                        .load(gambar2)
+                                        .error(R.color.colorGrey2)
+                                        .into(img_upload);
                             }
 
                             customProgress.hideProgress();
@@ -202,6 +217,12 @@ public class DetailProdukActivity extends AppCompatActivity {
             });
             dropDownMenu.show();
         });
+        findViewById(R.id.text_hapus).setOnClickListener(v -> {
+            hapusData();
+        });
+        findViewById(R.id.text_update).setOnClickListener(v -> {
+            ubahStok();
+        });
 //        text_simpan.setOnClickListener(v -> {
 ////            String nama = et_nama.getText().toString().trim();
 ////            String kategori = et_kategori.getText().toString().trim();
@@ -220,6 +241,65 @@ public class DetailProdukActivity extends AppCompatActivity {
 //                tambahdata(new File(""));
 //            }
 //        });
+    }
+
+    private void hapusData() {
+        AndroidNetworking.post(Connection.CONNECT + "AdminProduk.php")
+                .addBodyParameter("tag", "hapus")
+                .addBodyParameter("idproduk", idproduk)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        CustomDialog.successDialog(DetailProdukActivity.this, response.optString("pesan"));
+                        startActivity(new Intent(DetailProdukActivity.this, ProdukActivity.class));
+                        finish();
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() == 400) {
+                            try {
+                                JSONObject body = new JSONObject(error.getErrorBody());
+                                CustomDialog.errorDialog(DetailProdukActivity.this, body.optString("pesan"));
+                            } catch (JSONException ignored) {
+                            }
+                        } else {
+                            CustomDialog.errorDialog(DetailProdukActivity.this, "Sambunganmu dengan server terputus. Periksa sambungan internet, lalu coba lagi.");
+                        }
+                    }
+                });
+    }
+
+    private void ubahStok() {
+        AndroidNetworking.post(Connection.CONNECT + "AdminProduk.php")
+                .addBodyParameter("tag", "ubahstok")
+                .addBodyParameter("idproduk", idproduk)
+                .addBodyParameter("stok", et_jumlah.getText().toString().trim())
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        CustomDialog.successDialog(DetailProdukActivity.this, response.optString("pesan"));
+                        startActivity(new Intent(DetailProdukActivity.this, ProdukActivity.class));
+                        finish();
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() == 400) {
+                            try {
+                                JSONObject body = new JSONObject(error.getErrorBody());
+                                CustomDialog.errorDialog(DetailProdukActivity.this, body.optString("pesan"));
+                            } catch (JSONException ignored) {
+                            }
+                        } else {
+                            CustomDialog.errorDialog(DetailProdukActivity.this, "Sambunganmu dengan server terputus. Periksa sambungan internet, lalu coba lagi.");
+                        }
+                    }
+                });
     }
 
     private void loadKategori() {

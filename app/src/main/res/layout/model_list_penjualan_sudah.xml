@@ -13,7 +13,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="180dp">
+        android:layout_height="150dp">
 
         <RelativeLayout
             android:visibility="gone"
@@ -79,26 +79,6 @@
                 android:textSize="@dimen/fontsize15"
                 tools:text="Rp 20.000,00" />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/text_konfirmasi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/btn_green"
-            android:fontFamily="@font/poppins_medium"
-            android:paddingStart="10dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="4dp"
-            android:text="Konfirmasi"
-            android:textColor="@color/white"
-            android:textSize="@dimen/fontsize15" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

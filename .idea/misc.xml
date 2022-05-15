@@ -29,6 +29,7 @@
         <entry key="app/src/main/res/layout/list_kategori.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/model_list_kategori.xml" value="0.25" />
         <entry key="app/src/main/res/layout/model_list_penjualan.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/model_list_penjualan_sudah.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/model_list_produk.xml" value="0.25" />
         <entry key="app/src/main/res/menu/status_barang_diskon.xml" value="0.1890625" />
       </map>
