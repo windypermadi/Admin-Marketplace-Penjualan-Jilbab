@@ -9,13 +9,30 @@
     android:id="@+id/cv"
     app:cardCornerRadius="10dp">
 
-    <TextView
-        android:id="@+id/text_nama"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Jilbab"
-        android:textSize="@dimen/fontsize18"
-        android:fontFamily="@font/poppins_medium"
-        android:padding="8dp"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/text_nama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Jilbab"
+            android:textSize="@dimen/fontsize18"
+            android:fontFamily="@font/poppins_medium"
+            android:padding="8dp"/>
+
+        <ImageView
+            android:id="@+id/img_hapus"
+            android:layout_marginEnd="10dp"
+            android:padding="4dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_baseline_delete_24"
+            app:tint="@color/colorGrey2" />
+
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

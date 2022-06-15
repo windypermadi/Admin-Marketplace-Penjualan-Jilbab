@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.windypermadi.adminjilbabqu.auth.LoginActivity;
 import com.windypermadi.adminjilbabqu.auth.SessionManager;
@@ -56,8 +57,16 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, LaporanActivity.class));
         });
         findViewById(R.id.text_logout).setOnClickListener(v -> {
-            startActivity(new Intent(this, LoginActivity.class));
+            logoutUser();
         });
+    }
+
+    private void logoutUser() {
+        SessionManager.logoutUser();
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finishAffinity();
     }
 
 }

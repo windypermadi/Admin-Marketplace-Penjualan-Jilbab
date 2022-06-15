@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".menu.produk.DetailProdukActivity">
 
     <LinearLayout
@@ -71,27 +72,6 @@
                     android:layout_margin="4dp">
 
                     <EditText
-                        android:id="@+id/et_gambar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/colorGrey"
-                        android:drawableEnd="@drawable/ic_icon_upload"
-                        android:drawableTint="@color/black"
-                        android:hint="Pilih Gambar"
-                        android:inputType="number"
-                        android:maxLines="1"
-                        android:textColorHint="@color/black"
-                        android:textSize="@dimen/fontsize15"
-                        tools:ignore="Autofill,HardcodedText,UnusedAttribute" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp">
-
-                    <EditText
                         android:id="@+id/et_idkategori"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -99,6 +79,7 @@
                         android:hint="ID Kategori"
                         android:focusable="false"
                         android:maxLines="1"
+                        android:textColor="@color/black"
                         android:textColorHint="@color/black"
                         android:textSize="@dimen/fontsize15"
                         tools:ignore="Autofill,HardcodedText,UnusedAttribute" />
@@ -120,6 +101,7 @@
                         android:hint="Kategori Barang"
                         android:focusable="false"
                         android:maxLines="1"
+                        android:textColor="@color/black"
                         android:textColorHint="@color/black"
                         android:textSize="@dimen/fontsize15"
                         tools:ignore="Autofill,HardcodedText,UnusedAttribute" />
@@ -138,6 +120,7 @@
                         android:background="@color/colorGrey"
                         android:hint="Nama"
                         android:maxLines="1"
+                        android:textColor="@color/black"
                         android:textColorHint="@color/black"
                         android:textSize="@dimen/fontsize15"
                         tools:ignore="Autofill,HardcodedText,UnusedAttribute" />
@@ -197,6 +180,7 @@
                         android:hint="Harga"
                         android:inputType="number"
                         android:maxLines="1"
+                        android:textColor="@color/black"
                         android:textColorHint="@color/black"
                         android:textSize="@dimen/fontsize15"
                         tools:ignore="Autofill,HardcodedText,UnusedAttribute" />
@@ -217,6 +201,7 @@
                         android:inputType="number"
                         android:maxLines="1"
                         android:text="0"
+                        android:textColor="@color/black"
                         android:textColorHint="@color/black"
                         android:textSize="@dimen/fontsize15"
                         tools:ignore="Autofill,HardcodedText,UnusedAttribute" />
@@ -239,6 +224,7 @@
                         android:focusable="false"
                         android:clickable="false"
                         android:maxLines="1"
+                        android:textColor="@color/black"
                         android:textColorHint="@color/black"
                         android:textSize="@dimen/fontsize15"
                         tools:ignore="Autofill,HardcodedText,UnusedAttribute" />
@@ -260,6 +246,7 @@
                         android:maxLines="1"
                         android:maxLength="2"
                         android:text="0"
+                        android:textColor="@color/black"
                         android:textColorHint="@color/black"
                         android:textSize="@dimen/fontsize15"
                         tools:ignore="Autofill,HardcodedText,UnusedAttribute" />

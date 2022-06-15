@@ -26,6 +26,7 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/back"
                 android:layout_width="45dp"
                 android:layout_height="45dp"

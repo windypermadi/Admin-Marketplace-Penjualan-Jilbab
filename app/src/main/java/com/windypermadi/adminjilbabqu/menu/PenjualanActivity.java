@@ -15,12 +15,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.windypermadi.adminjilbabqu.MainActivity;
 import com.windypermadi.adminjilbabqu.R;
 import com.windypermadi.adminjilbabqu.helper.Connection;
@@ -38,8 +40,9 @@ import java.util.List;
 
 public class PenjualanActivity extends AppCompatActivity {
     private TextView text_belum, text_sudah;
-    private RecyclerView rv_data;
+    private RecyclerView rv_data, rv_data2;
     List<TransaksiModel> TransaksiModel;
+    private LinearLayout ly_kosong2, ly_kosong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,9 @@ public class PenjualanActivity extends AppCompatActivity {
         text_belum = findViewById(R.id.text_belum);
         text_sudah = findViewById(R.id.text_sudah);
         rv_data    = findViewById(R.id.rv_data);
+        rv_data2   = findViewById(R.id.rv_data2);
+        ly_kosong   = findViewById(R.id.ly_kosong);
+        ly_kosong2   = findViewById(R.id.ly_kosong2);
 
         TransaksiModel = new ArrayList<>();
         LinearLayoutManager x = new GridLayoutManager(this, 1, LinearLayoutManager.VERTICAL, false);
@@ -56,15 +62,32 @@ public class PenjualanActivity extends AppCompatActivity {
         rv_data.setLayoutManager(x);
         rv_data.setNestedScrollingEnabled(true);
 
-        LoadData();
+        TransaksiModel = new ArrayList<>();
+        LinearLayoutManager y = new GridLayoutManager(this, 1, LinearLayoutManager.VERTICAL, false);
+        rv_data2.setHasFixedSize(true);
+        rv_data2.setLayoutManager(y);
+        rv_data2.setNestedScrollingEnabled(true);
+
         AksiTombol();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LoadData();
     }
 
     private void AksiTombol() {
         text_belum.setOnClickListener(v -> {
+            TransaksiModel.clear();
+            rv_data.setVisibility(View.VISIBLE);
+            rv_data2.setVisibility(View.GONE);
             LoadData();
         });
         text_sudah.setOnClickListener(v -> {
+            TransaksiModel.clear();
+            rv_data.setVisibility(View.GONE);
+            rv_data2.setVisibility(View.VISIBLE);
             LoadDataSudah();
         });
     }
@@ -92,6 +115,9 @@ public class PenjualanActivity extends AppCompatActivity {
 
                             KategoriAdapter adapter = new KategoriAdapter(getApplicationContext(), TransaksiModel);
                             rv_data.setAdapter(adapter);
+
+                            ly_kosong.setVisibility(View.GONE);
+                            ly_kosong2.setVisibility(View.GONE);
                             customProgress.hideProgress();
 
                         } catch (JSONException e) {
@@ -116,8 +142,12 @@ public class PenjualanActivity extends AppCompatActivity {
                                 }
                             } catch (JSONException ignored) {
                             }
+                            ly_kosong2.setVisibility(View.GONE);
+                            ly_kosong.setVisibility(View.VISIBLE);
+                            customProgress.hideProgress();
                         } else {
                             CustomDialog.errorDialog(PenjualanActivity.this, "Sambunganmu dengan server terputus. Periksa sambungan internet, lalu coba lagi.");
+                            customProgress.hideProgress();
                         }
                     }
                 });
@@ -145,6 +175,10 @@ public class PenjualanActivity extends AppCompatActivity {
             final TransaksiModel tr = TransaksiModel.get(i);
             holder.text_nama.setText(tr.getNama_pelanggan());
             holder.text_total.setText(tr.getJumlah());
+
+            holder.text_konfirmasi.setOnClickListener(v -> {
+                KonfirmasiBarang(tr.getIdtransaksi());
+            });
         }
 
         @Override
@@ -189,7 +223,10 @@ public class PenjualanActivity extends AppCompatActivity {
                             }
 
                             SesudahAdapter adapter = new SesudahAdapter(getApplicationContext(), TransaksiModel);
-                            rv_data.setAdapter(adapter);
+                            rv_data2.setAdapter(adapter);
+
+                            ly_kosong.setVisibility(View.GONE);
+                            ly_kosong2.setVisibility(View.GONE);
                             customProgress.hideProgress();
 
                         } catch (JSONException e) {
@@ -214,8 +251,12 @@ public class PenjualanActivity extends AppCompatActivity {
                                 }
                             } catch (JSONException ignored) {
                             }
+                            ly_kosong.setVisibility(View.GONE);
+                            ly_kosong2.setVisibility(View.VISIBLE);
+                            customProgress.hideProgress();
                         } else {
                             CustomDialog.errorDialog(PenjualanActivity.this, "Sambunganmu dengan server terputus. Periksa sambungan internet, lalu coba lagi.");
+                            customProgress.hideProgress();
                         }
                     }
                 });
@@ -261,5 +302,33 @@ public class PenjualanActivity extends AppCompatActivity {
                 cv = itemView.findViewById(R.id.cv);
             }
         }
+    }
+
+    private void KonfirmasiBarang(String id) {
+        AndroidNetworking.post(Connection.CONNECT + "AdminPenjualan.php")
+                .addBodyParameter("tag", "konfirmasi")
+                .addBodyParameter("idtransaksi", id)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        CustomDialog.successDialog(PenjualanActivity.this, response.optString("pesan"));
+                        LoadData();
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() == 400) {
+                            try {
+                                JSONObject body = new JSONObject(error.getErrorBody());
+                                CustomDialog.errorDialog(PenjualanActivity.this, body.optString("pesan"));
+                            } catch (JSONException ignored) {
+                            }
+                        } else {
+                            CustomDialog.errorDialog(PenjualanActivity.this, "Sambunganmu dengan server terputus. Periksa sambungan internet, lalu coba lagi.");
+                        }
+                    }
+                });
     }
 }

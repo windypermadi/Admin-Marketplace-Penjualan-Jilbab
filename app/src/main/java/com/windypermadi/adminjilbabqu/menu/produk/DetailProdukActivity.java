@@ -21,6 +21,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -56,12 +57,12 @@ import java.util.HashMap;
 
 public class DetailProdukActivity extends AppCompatActivity {
     private EditText et_idkategori, et_kategori, et_nama, et_harga, et_jumlah,
-            et_gambar, et_status, et_diskon;
+            et_status, et_diskon;
     private TextView text_simpan;
     private ImageView btn_upload, img_upload, img;
     ArrayList<HashMap<String, String>> dataKategori = new ArrayList<>();
     String idkategori, status_diskon;
-    String idproduk, idkategori2, nama_kategori, nama_produk, gambar2,
+    String idproduk, nama_kategori, nama_produk, gambar2,
             harga, diskon, harga_diskon, stok, status_diskon2;
 
     //upload
@@ -91,7 +92,6 @@ public class DetailProdukActivity extends AppCompatActivity {
         et_nama = findViewById(R.id.et_nama);
         et_harga = findViewById(R.id.et_harga);
         et_jumlah = findViewById(R.id.et_jumlah);
-        et_gambar = findViewById(R.id.et_gambar);
         et_status = findViewById(R.id.et_status);
         et_diskon = findViewById(R.id.et_diskon);
         text_simpan = findViewById(R.id.text_simpan);
@@ -122,7 +122,7 @@ public class DetailProdukActivity extends AppCompatActivity {
                                 JSONObject responses = response.getJSONObject(i);
 
                                 idproduk = responses.optString("idproduk");
-                                idkategori2 = responses.optString("idkategori");
+                                idkategori = responses.optString("idkategori");
                                 nama_kategori = responses.optString("nama_kategori");
                                 nama_produk = responses.optString("nama_produk");
                                 gambar2 = responses.optString("gambar");
@@ -132,7 +132,7 @@ public class DetailProdukActivity extends AppCompatActivity {
                                 stok = responses.optString("stok");
                                 status_diskon2 = responses.optString("status_diskon");
 
-                                et_idkategori.setText(idkategori2);
+                                et_idkategori.setText(idkategori);
                                 et_kategori.setText(nama_kategori);
                                 et_nama.setText(nama_produk);
                                 et_harga.setText(harga);
@@ -140,11 +140,11 @@ public class DetailProdukActivity extends AppCompatActivity {
                                 et_jumlah.setText(stok);
 
                                 if (status_diskon2.equals("Y")){
-                                    status_diskon = "Y";
+                                    status_diskon2 = "Y";
                                     et_status.setText("Ada Diskon");
                                     et_diskon.setVisibility(View.VISIBLE);
                                 } else {
-                                    status_diskon = "N";
+                                    status_diskon2 = "N";
                                     et_status.setText("Tidak Ada Diskon");
                                     et_diskon.setVisibility(View.GONE);
                                 }
@@ -205,13 +205,13 @@ public class DetailProdukActivity extends AppCompatActivity {
             dropDownMenu.getMenuInflater().inflate(R.menu.status_barang_diskon, dropDownMenu.getMenu());
             dropDownMenu.setOnMenuItemClickListener(menuItem -> {
                 if (menuItem.getItemId() == R.id.ya) {
-                    status_diskon = "Y";
+                    status_diskon2 = "Y";
                     et_status.setText("Ada Diskon");
                     et_diskon.setVisibility(View.VISIBLE);
                 } else {
-                    status_diskon = "N";
+                    status_diskon2 = "N";
                     et_status.setText("Tidak Ada Diskon");
-                    et_diskon.setVisibility(View.VISIBLE);
+                    et_diskon.setVisibility(View.GONE);
                 }
                 return true;
             });
@@ -221,26 +221,43 @@ public class DetailProdukActivity extends AppCompatActivity {
             hapusData();
         });
         findViewById(R.id.text_update).setOnClickListener(v -> {
-            ubahStok();
+            String idkategori = et_idkategori.getText().toString().trim();
+            String kategori = et_kategori.getText().toString().trim();
+            String nama = et_nama.getText().toString().trim();
+            String harga = et_harga.getText().toString().trim().replaceAll("[^\\d]", "");
+            String jumlah = et_jumlah.getText().toString().trim();
+            String status_diskon = et_status.getText().toString().trim();
+            String diskon = et_diskon.getText().toString().trim();
+
+            if (!idkategori.isEmpty() && !kategori.isEmpty() && !nama.isEmpty() && !harga.isEmpty()
+                    && !jumlah.isEmpty()){
+                if (status_diskon2.equals("Y")){
+                    if (!diskon.isEmpty()){
+                        if (gambar.equals("isi")) {
+                            File file = new File(getRealPathFromURI(FilePath));
+                            customProgress.showProgress(this, false);
+                            ubahProduk(file);
+                        } else {
+                            customProgress.showProgress(this, false);
+                            ubahProduk(new File(""));
+                        }
+                    } else {
+                        CustomDialog.errorDialog(DetailProdukActivity.this, "Jumlah diskon belum terisi");
+                    }
+                } else {
+                    if (gambar.equals("isi")) {
+                        File file = new File(getRealPathFromURI(FilePath));
+                        customProgress.showProgress(this, false);
+                        ubahProduk(file);
+                    } else {
+                        customProgress.showProgress(this, false);
+                        ubahProduk(new File(""));
+                    }
+                }
+            } else {
+                CustomDialog.errorDialog(DetailProdukActivity.this, "Data harus lengkap tidak boleh ada data yang kosong");
+            }
         });
-//        text_simpan.setOnClickListener(v -> {
-////            String nama = et_nama.getText().toString().trim();
-////            String kategori = et_kategori.getText().toString().trim();
-////            String harga = et_harga.getText().toString().trim().replaceAll("[^\\d]", "");
-////            String status_konsik = et_konsi.getText().toString().trim();
-////            String status_display = et_tampilkan.getText().toString().trim();
-////            String jenis_produk = et_jenis.getText().toString().trim();
-////            String satuan = et_satuan.getText().toString().trim();
-//
-//            if (gambar.equals("isi")) {
-//                File file = new File(getRealPathFromURI(FilePath));
-//                customProgress.showProgress(this, false);
-//                tambahdata(file);
-//            } else {
-//                customProgress.showProgress(this, false);
-//                tambahdata(new File(""));
-//            }
-//        });
     }
 
     private void hapusData() {
@@ -252,9 +269,7 @@ public class DetailProdukActivity extends AppCompatActivity {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        CustomDialog.successDialog(DetailProdukActivity.this, response.optString("pesan"));
-                        startActivity(new Intent(DetailProdukActivity.this, ProdukActivity.class));
-                        finish();
+                        successDialog(DetailProdukActivity.this, response.optString("pesan"));
                     }
 
                     @Override
@@ -272,34 +287,20 @@ public class DetailProdukActivity extends AppCompatActivity {
                 });
     }
 
-    private void ubahStok() {
-        AndroidNetworking.post(Connection.CONNECT + "AdminProduk.php")
-                .addBodyParameter("tag", "ubahstok")
-                .addBodyParameter("idproduk", idproduk)
-                .addBodyParameter("stok", et_jumlah.getText().toString().trim())
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        CustomDialog.successDialog(DetailProdukActivity.this, response.optString("pesan"));
-                        startActivity(new Intent(DetailProdukActivity.this, ProdukActivity.class));
-                        finish();
-                    }
-
-                    @Override
-                    public void onError(ANError error) {
-                        if (error.getErrorCode() == 400) {
-                            try {
-                                JSONObject body = new JSONObject(error.getErrorBody());
-                                CustomDialog.errorDialog(DetailProdukActivity.this, body.optString("pesan"));
-                            } catch (JSONException ignored) {
-                            }
-                        } else {
-                            CustomDialog.errorDialog(DetailProdukActivity.this, "Sambunganmu dengan server terputus. Periksa sambungan internet, lalu coba lagi.");
-                        }
-                    }
-                });
+    public void successDialog(final Context context, final String alertText){
+        final View inflater = LayoutInflater.from(context).inflate(R.layout.custom_success_dialog, null);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context).setView(inflater);
+        builder.setCancelable(false);
+        final TextView ket = inflater.findViewById(R.id.keterangan);
+        ket.setText(alertText);
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.getWindow().setBackgroundDrawableResource(R.color.transparan);
+        inflater.findViewById(R.id.ok).setOnClickListener(v -> {
+            finish();
+            alertDialog.dismiss();
+        });
+        alertDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        alertDialog.show();
     }
 
     private void loadKategori() {
@@ -437,23 +438,23 @@ public class DetailProdukActivity extends AppCompatActivity {
         return path;
     }
 
-    public void tambahdata(File file) {
+    public void ubahProduk(File file) {
         if (file.length() == 0) {
             AndroidNetworking.upload(Connection.CONNECT + "AdminProduk.php")
-                    .addMultipartParameter("tag", "add")
+                    .addMultipartParameter("tag", "ubah")
+                    .addMultipartParameter("idproduk", idproduk)
                     .addMultipartParameter("nama_produk", et_nama.getText().toString().trim())
                     .addMultipartParameter("harga", et_harga.getText().toString().trim().replaceAll("[^\\d]", ""))
-                    .addMultipartParameter("status_diskon", status_diskon)
+                    .addMultipartParameter("status_diskon", status_diskon2)
                     .addMultipartParameter("diskon", et_diskon.getText().toString().trim())
                     .addMultipartParameter("stok", et_jumlah.getText().toString().trim())
                     .addMultipartParameter("idkategori", idkategori)
-                    .addMultipartParameter("diskon", et_diskon.getText().toString().trim())
                     .setPriority(Priority.HIGH)
                     .build()
                     .getAsJSONObject(new JSONObjectRequestListener() {
                         @Override
                         public void onResponse(JSONObject response) {
-                            CustomDialog.successDialog(DetailProdukActivity.this, response.optString("pesan"));
+                            successDialog(DetailProdukActivity.this, response.optString("pesan"));
                             customProgress.hideProgress();
                         }
 
@@ -476,25 +477,21 @@ public class DetailProdukActivity extends AppCompatActivity {
                     });
         } else {
             AndroidNetworking.upload(Connection.CONNECT + "AdminProduk.php")
-                    .addMultipartParameter("tag", "add")
+                    .addMultipartParameter("tag", "ubah")
                     .addMultipartParameter("nama_produk", et_nama.getText().toString().trim())
                     .addMultipartParameter("harga", et_harga.getText().toString().trim().replaceAll("[^\\d]", ""))
-                    .addMultipartParameter("status_diskon", status_diskon)
+                    .addMultipartParameter("status_diskon", status_diskon2)
                     .addMultipartParameter("diskon", et_diskon.getText().toString().trim())
                     .addMultipartParameter("stok", et_jumlah.getText().toString().trim())
                     .addMultipartParameter("idkategori", idkategori)
-                    .addMultipartParameter("diskon", et_diskon.getText().toString().trim())
                     .addMultipartFile("uploadedfile", file)
                     .setPriority(Priority.HIGH)
                     .build()
                     .getAsJSONObject(new JSONObjectRequestListener() {
                         @Override
                         public void onResponse(JSONObject response) {
-                            CustomDialog.successDialog(DetailProdukActivity.this, response.optString("pesan"));
+                            successDialog(DetailProdukActivity.this, response.optString("pesan"));
                             customProgress.hideProgress();
-
-                            startActivity(new Intent(DetailProdukActivity.this, ProdukActivity.class));
-                            finish();
                         }
 
                         @Override

@@ -21,6 +21,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -66,7 +67,12 @@ public class KategoriActivity extends AppCompatActivity {
         rv_data.setNestedScrollingEnabled(true);
 
         text_simpan.setOnClickListener(v -> {
-            TambahData();
+            String nama = et_nama.getText().toString().trim();
+            if (!nama.isEmpty()){
+                TambahData();
+            } else {
+                Toast.makeText(KategoriActivity.this, "Nama Kategori tidak boleh kosong", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
@@ -178,6 +184,9 @@ public class KategoriActivity extends AppCompatActivity {
         public void onBindViewHolder(ProductViewHolder holder, int i) {
             final KategoriModel pegawai = KategoriModel.get(i);
             holder.text_nama.setText(pegawai.getNama_kategori());
+            holder.img_hapus.setOnClickListener(v -> {
+                HapusData(pegawai.getIdkategori());
+            });
         }
 
         @Override
@@ -188,12 +197,42 @@ public class KategoriActivity extends AppCompatActivity {
         class ProductViewHolder extends RecyclerView.ViewHolder {
             TextView text_nama;
             CardView cv;
+            ImageView img_hapus;
 
             ProductViewHolder(View itemView) {
                 super(itemView);
                 text_nama = itemView.findViewById(R.id.text_nama);
                 cv = itemView.findViewById(R.id.cv);
+                img_hapus = itemView.findViewById(R.id.img_hapus);
             }
         }
+    }
+
+    private void HapusData(String id) {
+        AndroidNetworking.post(Connection.CONNECT + "AdminKategori.php")
+                .addBodyParameter("tag", "hapus")
+                .addBodyParameter("idkategori", id)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        CustomDialog.successDialog(KategoriActivity.this, response.optString("pesan"));
+                        onResume();
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        if (error.getErrorCode() == 400) {
+                            try {
+                                JSONObject body = new JSONObject(error.getErrorBody());
+                                CustomDialog.errorDialog(KategoriActivity.this, body.optString("pesan"));
+                            } catch (JSONException ignored) {
+                            }
+                        } else {
+                            CustomDialog.errorDialog(KategoriActivity.this, "Sambunganmu dengan server terputus. Periksa sambungan internet, lalu coba lagi.");
+                        }
+                    }
+                });
     }
 }

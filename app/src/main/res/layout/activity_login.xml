@@ -5,6 +5,7 @@
     android:id="@+id/lini"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".auth.LoginActivity">
 
     <LinearLayout
@@ -46,9 +47,10 @@
                 android:background="@color/colorGrey"
                 android:drawableEnd="@drawable/ic_baseline_perm_identity_24"
                 android:drawableTint="@color/black"
+                android:textColor="@color/black"
                 android:hint="Username"
                 android:maxLines="1"
-                android:textColorHint="@color/black"
+                android:textColorHint="@color/colorGrey2"
                 android:textSize="@dimen/fontsize15"
                 tools:ignore="Autofill,HardcodedText,UnusedAttribute" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -68,7 +70,8 @@
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:textColorHint="@color/black"
+                android:textColor="@color/black"
+                android:textColorHint="@color/colorGrey2"
                 android:textSize="16sp"
                 tools:ignore="Autofill,HardcodedText,UnusedAttribute" />
         </com.google.android.material.textfield.TextInputLayout>

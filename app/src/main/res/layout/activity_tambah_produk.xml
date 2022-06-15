@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".menu.produk.TambahProdukActivity">
 
     <LinearLayout
@@ -64,6 +65,7 @@
                         android:hint="ID Kategori"
                         android:focusable="false"
                         android:maxLines="1"
+                        android:textColor="@color/black"
                         android:textColorHint="@color/black"
                         android:textSize="@dimen/fontsize15"
                         tools:ignore="Autofill,HardcodedText,UnusedAttribute" />
@@ -82,6 +84,7 @@
                         android:background="@color/colorGrey"
                         android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
                         android:drawableTint="@color/black"
+                        android:textColor="@color/black"
                         android:hint="Kategori Barang"
                         android:focusable="false"
                         android:maxLines="1"
@@ -101,6 +104,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/colorGrey"
+                        android:textColor="@color/black"
                         android:hint="Nama"
                         android:maxLines="1"
                         android:textColorHint="@color/black"
@@ -160,6 +164,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/colorGrey"
                         android:hint="Harga"
+                        android:textColor="@color/black"
                         android:inputType="number"
                         android:maxLines="1"
                         android:textColorHint="@color/black"
@@ -179,9 +184,9 @@
                         android:layout_height="wrap_content"
                         android:background="@color/colorGrey"
                         android:hint="Jumlah Barang"
+                        android:textColor="@color/black"
                         android:inputType="number"
                         android:maxLines="1"
-                        android:text="0"
                         android:textColorHint="@color/black"
                         android:textSize="@dimen/fontsize15"
                         tools:ignore="Autofill,HardcodedText,UnusedAttribute" />
@@ -223,6 +228,7 @@
                         android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
                         android:drawableTint="@color/black"
                         android:hint="Status Diskon"
+                        android:textColor="@color/black"
                         android:focusable="false"
                         android:clickable="false"
                         android:maxLines="1"
@@ -245,8 +251,8 @@
                         android:background="@color/colorGrey"
                         android:hint="Jumlah Diskon (%)"
                         android:maxLines="1"
+                        android:textColor="@color/black"
                         android:maxLength="2"
-                        android:text="0"
                         android:textColorHint="@color/black"
                         android:textSize="@dimen/fontsize15"
                         tools:ignore="Autofill,HardcodedText,UnusedAttribute" />
@@ -268,7 +274,7 @@
         android:fontFamily="@font/poppins_medium"
         android:gravity="center"
         android:padding="8dp"
-        android:text="Tambah Stok Barang"
+        android:text="Tambah Barang"
         android:textColor="@color/white"
         android:textSize="@dimen/fontsize15"
         tools:ignore="Autofill,HardcodedText,TextFields" />

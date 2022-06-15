@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".menu.LaporanActivity">
 
     <androidx.cardview.widget.CardView
@@ -50,16 +51,17 @@
         android:layout_margin="4dp">
 
         <EditText
-            android:id="@+id/et_idkategori"
+            android:id="@+id/et_total"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorGrey"
             android:maxLines="1"
+            android:focusable="false"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/fontsize23"
             android:textStyle="bold"
             tools:ignore="Autofill,HardcodedText,UnusedAttribute"
-            tools:text="Rp 2.000.000" />
+            android:text="Rp 0" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
@@ -70,25 +72,31 @@
         android:weightSum="2">
 
         <EditText
+            android:id="@+id/et_mulai"
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:padding="4dp"
+            android:focusable="false"
             android:hint="Tanggal Mulai"
-            android:textColorHint="@color/colorGrey2"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:background="@drawable/btn_grey_outline"
             android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
             android:drawablePadding="10dp" />
 
         <EditText
+            android:id="@+id/et_akhir"
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:padding="4dp"
+            android:focusable="false"
             android:hint="Tanggal Akhir"
-            android:textColorHint="@color/colorGrey2"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:background="@drawable/btn_grey_outline"
             android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
             android:drawablePadding="10dp" />

@@ -22,6 +22,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -173,28 +174,48 @@ public class TambahProdukActivity extends AppCompatActivity implements TextWatch
                 } else {
                     status_diskon = "N";
                     et_status.setText("Tidak Ada Diskon");
-                    et_diskon.setVisibility(View.VISIBLE);
+                    et_diskon.setVisibility(View.GONE);
                 }
                 return true;
             });
             dropDownMenu.show();
         });
         text_simpan.setOnClickListener(v -> {
-//            String nama = et_nama.getText().toString().trim();
-//            String kategori = et_kategori.getText().toString().trim();
-//            String harga = et_harga.getText().toString().trim().replaceAll("[^\\d]", "");
-//            String status_konsik = et_konsi.getText().toString().trim();
-//            String status_display = et_tampilkan.getText().toString().trim();
-//            String jenis_produk = et_jenis.getText().toString().trim();
-//            String satuan = et_satuan.getText().toString().trim();
+            String idkategori = et_idkategori.getText().toString().trim();
+            String kategori = et_kategori.getText().toString().trim();
+            String nama = et_nama.getText().toString().trim();
+            String harga = et_harga.getText().toString().trim().replaceAll("[^\\d]", "");
+            String jumlah = et_jumlah.getText().toString().trim();
+            String status_diskon = et_status.getText().toString().trim();
+            String diskon = et_diskon.getText().toString().trim();
 
-            if (gambar.equals("isi")) {
-                File file = new File(getRealPathFromURI(FilePath));
-                customProgress.showProgress(this, false);
-                tambahdata(file);
+            if (!idkategori.isEmpty() && !kategori.isEmpty() && !nama.isEmpty() && !harga.isEmpty()
+            && !jumlah.isEmpty()){
+                if (status_diskon.equals("Y")){
+                    if (!diskon.isEmpty()){
+                        if (gambar.equals("isi")) {
+                            File file = new File(getRealPathFromURI(FilePath));
+                            customProgress.showProgress(this, false);
+                            tambahdata(file);
+                        } else {
+                            customProgress.showProgress(this, false);
+                            tambahdata(new File(""));
+                        }
+                    } else {
+                        CustomDialog.errorDialog(TambahProdukActivity.this, "Jumlah diskon belum terisi");
+                    }
+                } else {
+                    if (gambar.equals("isi")) {
+                        File file = new File(getRealPathFromURI(FilePath));
+                        customProgress.showProgress(this, false);
+                        tambahdata(file);
+                    } else {
+                        customProgress.showProgress(this, false);
+                        tambahdata(new File(""));
+                    }
+                }
             } else {
-                customProgress.showProgress(this, false);
-                tambahdata(new File(""));
+                CustomDialog.errorDialog(TambahProdukActivity.this, "Data harus lengkap tidak boleh ada data yang kosong");
             }
         });
     }
@@ -344,13 +365,12 @@ public class TambahProdukActivity extends AppCompatActivity implements TextWatch
                     .addMultipartParameter("diskon", et_diskon.getText().toString().trim())
                     .addMultipartParameter("stok", et_jumlah.getText().toString().trim())
                     .addMultipartParameter("idkategori", idkategori)
-                    .addMultipartParameter("diskon", et_diskon.getText().toString().trim())
                     .setPriority(Priority.HIGH)
                     .build()
                     .getAsJSONObject(new JSONObjectRequestListener() {
                         @Override
                         public void onResponse(JSONObject response) {
-                            CustomDialog.successDialog(TambahProdukActivity.this, response.optString("pesan"));
+                            successDialog(TambahProdukActivity.this, response.optString("pesan"));
                             customProgress.hideProgress();
                         }
 
@@ -380,18 +400,14 @@ public class TambahProdukActivity extends AppCompatActivity implements TextWatch
                     .addMultipartParameter("diskon", et_diskon.getText().toString().trim())
                     .addMultipartParameter("stok", et_jumlah.getText().toString().trim())
                     .addMultipartParameter("idkategori", idkategori)
-                    .addMultipartParameter("diskon", et_diskon.getText().toString().trim())
                     .addMultipartFile("uploadedfile", file)
                     .setPriority(Priority.HIGH)
                     .build()
                     .getAsJSONObject(new JSONObjectRequestListener() {
                         @Override
                         public void onResponse(JSONObject response) {
-                            CustomDialog.successDialog(TambahProdukActivity.this, response.optString("pesan"));
+                            successDialog(TambahProdukActivity.this, response.optString("pesan"));
                             customProgress.hideProgress();
-
-                            startActivity(new Intent(TambahProdukActivity.this, ProdukActivity.class));
-                            finish();
                         }
 
                         @Override
@@ -437,5 +453,21 @@ public class TambahProdukActivity extends AppCompatActivity implements TextWatch
                 Log.e("value", "Permission Denied, You cannot use local drive .");
             }
         }
+    }
+
+    public void successDialog(final Context context, final String alertText){
+        final View inflater = LayoutInflater.from(context).inflate(R.layout.custom_success_dialog, null);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context).setView(inflater);
+        builder.setCancelable(false);
+        final TextView ket = inflater.findViewById(R.id.keterangan);
+        ket.setText(alertText);
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.getWindow().setBackgroundDrawableResource(R.color.transparan);
+        inflater.findViewById(R.id.ok).setOnClickListener(v -> {
+            finish();
+            alertDialog.dismiss();
+        });
+        alertDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        alertDialog.show();
     }
 }
