@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -68,13 +69,8 @@ public class PenjualanActivity extends AppCompatActivity {
         rv_data2.setLayoutManager(y);
         rv_data2.setNestedScrollingEnabled(true);
 
-        AksiTombol();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         LoadData();
+        AksiTombol();
     }
 
     private void AksiTombol() {
@@ -132,14 +128,14 @@ public class PenjualanActivity extends AppCompatActivity {
                             try {
                                 JSONObject body = new JSONObject(error.getErrorBody());
                                 String kode = body.optString("kode");
-                                if (kode.equals("0")) {
-                                    //tidak ada data
-                                    CustomDialog.errorDialog(PenjualanActivity.this, body.optString("pesan"));
-                                } else if (kode.equals("1")) {
-                                    CustomDialog.errorDialog(PenjualanActivity.this, body.optString("pesan"));
-                                } else {
-                                    CustomDialog.errorDialog(PenjualanActivity.this, body.optString("pesan"));
-                                }
+//                                if (kode.equals("0")) {
+//                                    //tidak ada data
+//                                    CustomDialog.errorDialog(PenjualanActivity.this, body.optString("pesan"));
+//                                } else if (kode.equals("1")) {
+//                                    CustomDialog.errorDialog(PenjualanActivity.this, body.optString("pesan"));
+//                                } else {
+//                                    CustomDialog.errorDialog(PenjualanActivity.this, body.optString("pesan"));
+//                                }
                             } catch (JSONException ignored) {
                             }
                             ly_kosong2.setVisibility(View.GONE);
@@ -241,14 +237,14 @@ public class PenjualanActivity extends AppCompatActivity {
                             try {
                                 JSONObject body = new JSONObject(error.getErrorBody());
                                 String kode = body.optString("kode");
-                                if (kode.equals("0")) {
-                                    //tidak ada data
-                                    CustomDialog.errorDialog(PenjualanActivity.this, body.optString("pesan"));
-                                } else if (kode.equals("1")) {
-                                    CustomDialog.errorDialog(PenjualanActivity.this, body.optString("pesan"));
-                                } else {
-                                    CustomDialog.errorDialog(PenjualanActivity.this, body.optString("pesan"));
-                                }
+//                                if (kode.equals("0")) {
+//                                    //tidak ada data
+//                                    CustomDialog.errorDialog(PenjualanActivity.this, body.optString("pesan"));
+//                                } else if (kode.equals("1")) {
+//                                    CustomDialog.errorDialog(PenjualanActivity.this, body.optString("pesan"));
+//                                } else {
+//                                    CustomDialog.errorDialog(PenjualanActivity.this, body.optString("pesan"));
+//                                }
                             } catch (JSONException ignored) {
                             }
                             ly_kosong.setVisibility(View.GONE);
@@ -313,8 +309,7 @@ public class PenjualanActivity extends AppCompatActivity {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        CustomDialog.successDialog(PenjualanActivity.this, response.optString("pesan"));
-                        LoadData();
+                        successDialog(PenjualanActivity.this, response.optString("pesan"));
                     }
 
                     @Override
@@ -330,5 +325,21 @@ public class PenjualanActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    public void successDialog(final Context context, final String alertText){
+        final View inflater = LayoutInflater.from(context).inflate(R.layout.custom_success_dialog, null);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context).setView(inflater);
+        builder.setCancelable(false);
+        final TextView ket = inflater.findViewById(R.id.keterangan);
+        ket.setText(alertText);
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.getWindow().setBackgroundDrawableResource(R.color.transparan);
+        inflater.findViewById(R.id.ok).setOnClickListener(v -> {
+            finish();
+            alertDialog.dismiss();
+        });
+        alertDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        alertDialog.show();
     }
 }
