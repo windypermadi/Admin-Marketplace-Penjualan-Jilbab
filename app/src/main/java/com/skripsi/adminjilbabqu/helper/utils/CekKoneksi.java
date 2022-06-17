@@ -1,4 +1,4 @@
-package com.windypermadi.adminjilbabqu.helper.utils;
+package com.skripsi.adminjilbabqu.helper.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

@@ -1,4 +1,4 @@
-package com.windypermadi.adminjilbabqu.model;
+package com.skripsi.adminjilbabqu.model;
 
 public class KategoriModel {
     private String idkategori;

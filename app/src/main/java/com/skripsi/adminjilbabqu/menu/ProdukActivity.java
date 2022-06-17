@@ -1,6 +1,6 @@
-package com.windypermadi.adminjilbabqu.menu;
+package com.skripsi.adminjilbabqu.menu;
 
-import static com.windypermadi.adminjilbabqu.helper.utils.CustomProgressbar.customProgress;
+import static com.skripsi.adminjilbabqu.helper.utils.CustomProgressbar.customProgress;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,12 +24,11 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.bumptech.glide.Glide;
-import com.windypermadi.adminjilbabqu.R;
-import com.windypermadi.adminjilbabqu.helper.Connection;
-import com.windypermadi.adminjilbabqu.helper.utils.CustomDialog;
-import com.windypermadi.adminjilbabqu.menu.produk.DetailProdukActivity;
-import com.windypermadi.adminjilbabqu.model.KategoriModel;
-import com.windypermadi.adminjilbabqu.model.ProdukModel;
+import com.skripsi.adminjilbabqu.R;
+import com.skripsi.adminjilbabqu.helper.Connection;
+import com.skripsi.adminjilbabqu.helper.utils.CustomDialog;
+import com.skripsi.adminjilbabqu.menu.produk.DetailProdukActivity;
+import com.skripsi.adminjilbabqu.model.ProdukModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;

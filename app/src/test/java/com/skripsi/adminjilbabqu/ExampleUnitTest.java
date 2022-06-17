@@ -1,4 +1,4 @@
-package com.windypermadi.adminjilbabqu;
+package com.skripsi.adminjilbabqu;
 
 import org.junit.Test;
 

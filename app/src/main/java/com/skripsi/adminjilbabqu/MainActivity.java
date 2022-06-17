@@ -1,24 +1,21 @@
-package com.windypermadi.adminjilbabqu;
+package com.skripsi.adminjilbabqu;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
-import com.windypermadi.adminjilbabqu.auth.LoginActivity;
-import com.windypermadi.adminjilbabqu.auth.SessionManager;
-import com.windypermadi.adminjilbabqu.helper.utils.CekKoneksi;
-import com.windypermadi.adminjilbabqu.helper.utils.CustomProgressbar;
-import com.windypermadi.adminjilbabqu.menu.KategoriActivity;
-import com.windypermadi.adminjilbabqu.menu.LaporanActivity;
-import com.windypermadi.adminjilbabqu.menu.PenjualanActivity;
-import com.windypermadi.adminjilbabqu.menu.ProdukActivity;
-import com.windypermadi.adminjilbabqu.menu.produk.TambahProdukActivity;
+import com.skripsi.adminjilbabqu.auth.LoginActivity;
+import com.skripsi.adminjilbabqu.auth.SessionManager;
+import com.skripsi.adminjilbabqu.helper.utils.CekKoneksi;
+import com.skripsi.adminjilbabqu.helper.utils.CustomProgressbar;
+import com.skripsi.adminjilbabqu.menu.KategoriActivity;
+import com.skripsi.adminjilbabqu.menu.LaporanActivity;
+import com.skripsi.adminjilbabqu.menu.PenjualanActivity;
+import com.skripsi.adminjilbabqu.menu.ProdukActivity;
+import com.skripsi.adminjilbabqu.menu.produk.TambahProdukActivity;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     CustomProgressbar customProgress = CustomProgressbar.getInstance();

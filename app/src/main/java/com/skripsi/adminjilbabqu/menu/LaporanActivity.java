@@ -1,12 +1,11 @@
-package com.windypermadi.adminjilbabqu.menu;
+package com.skripsi.adminjilbabqu.menu;
 
-import static com.windypermadi.adminjilbabqu.helper.utils.CustomProgressbar.customProgress;
+import static com.skripsi.adminjilbabqu.helper.utils.CustomProgressbar.customProgress;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -15,11 +14,9 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.leavjenn.smoothdaterangepicker.date.SmoothDateRangePickerFragment;
-import com.windypermadi.adminjilbabqu.MainActivity;
-import com.windypermadi.adminjilbabqu.R;
-import com.windypermadi.adminjilbabqu.helper.Connection;
-import com.windypermadi.adminjilbabqu.helper.utils.CustomDialog;
-import com.windypermadi.adminjilbabqu.model.TransaksiModel;
+import com.skripsi.adminjilbabqu.R;
+import com.skripsi.adminjilbabqu.helper.Connection;
+import com.skripsi.adminjilbabqu.helper.utils.CustomDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;

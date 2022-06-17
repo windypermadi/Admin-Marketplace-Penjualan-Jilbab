@@ -1,4 +1,4 @@
-package com.windypermadi.adminjilbabqu.helper.utils;
+package com.skripsi.adminjilbabqu.helper.utils;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.windypermadi.adminjilbabqu.R;
+import com.skripsi.adminjilbabqu.R;
 
 public class CustomDialog {
     public static void errorDialog(final Context context, final String alertText){

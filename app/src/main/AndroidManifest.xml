@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.windypermadi.adminjilbabqu">
+    package="com.skripsi.adminjilbabqu">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -22,25 +22,25 @@
         tools:targetApi="m"
         tools:ignore="AllowBackup">
         <activity
-            android:name=".menu.LaporanActivity"
+            android:name="com.skripsi.adminjilbabqu.menu.LaporanActivity"
             android:exported="false" />
         <activity
-            android:name=".menu.PenjualanActivity"
+            android:name="com.skripsi.adminjilbabqu.menu.PenjualanActivity"
             android:exported="false" />
         <activity
-            android:name=".menu.produk.DetailProdukActivity"
+            android:name="com.skripsi.adminjilbabqu.menu.produk.DetailProdukActivity"
             android:exported="false" />
         <activity
-            android:name=".menu.produk.TambahProdukActivity"
+            android:name="com.skripsi.adminjilbabqu.menu.produk.TambahProdukActivity"
             android:exported="false" />
         <activity
-            android:name=".menu.ProdukActivity"
+            android:name="com.skripsi.adminjilbabqu.menu.ProdukActivity"
             android:exported="false" />
         <activity
-            android:name=".menu.KategoriActivity"
+            android:name="com.skripsi.adminjilbabqu.menu.KategoriActivity"
             android:exported="false" />
         <activity
-            android:name=".auth.LoginActivity"
+            android:name="com.skripsi.adminjilbabqu.auth.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -49,7 +49,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.skripsi.adminjilbabqu.MainActivity"
             android:exported="true" />
     </application>
 

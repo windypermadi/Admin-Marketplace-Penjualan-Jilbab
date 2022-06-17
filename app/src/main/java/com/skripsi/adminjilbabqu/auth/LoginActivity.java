@@ -1,4 +1,4 @@
-package com.windypermadi.adminjilbabqu.auth;
+package com.skripsi.adminjilbabqu.auth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,12 +11,12 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
-import com.windypermadi.adminjilbabqu.MainActivity;
-import com.windypermadi.adminjilbabqu.R;
-import com.windypermadi.adminjilbabqu.helper.Connection;
-import com.windypermadi.adminjilbabqu.helper.utils.CekKoneksi;
-import com.windypermadi.adminjilbabqu.helper.utils.CustomDialog;
-import com.windypermadi.adminjilbabqu.helper.utils.CustomProgressbar;
+import com.skripsi.adminjilbabqu.MainActivity;
+import com.skripsi.adminjilbabqu.R;
+import com.skripsi.adminjilbabqu.helper.Connection;
+import com.skripsi.adminjilbabqu.helper.utils.CekKoneksi;
+import com.skripsi.adminjilbabqu.helper.utils.CustomDialog;
+import com.skripsi.adminjilbabqu.helper.utils.CustomProgressbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;

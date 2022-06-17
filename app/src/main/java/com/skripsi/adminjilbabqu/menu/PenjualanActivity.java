@@ -1,6 +1,6 @@
-package com.windypermadi.adminjilbabqu.menu;
+package com.skripsi.adminjilbabqu.menu;
 
-import static com.windypermadi.adminjilbabqu.helper.utils.CustomProgressbar.customProgress;
+import static com.skripsi.adminjilbabqu.helper.utils.CustomProgressbar.customProgress;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,17 +24,15 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
-import com.windypermadi.adminjilbabqu.MainActivity;
-import com.windypermadi.adminjilbabqu.R;
-import com.windypermadi.adminjilbabqu.helper.Connection;
-import com.windypermadi.adminjilbabqu.helper.utils.CustomDialog;
-import com.windypermadi.adminjilbabqu.model.KategoriModel;
-import com.windypermadi.adminjilbabqu.model.TransaksiModel;
+import com.skripsi.adminjilbabqu.MainActivity;
+import com.skripsi.adminjilbabqu.R;
+import com.skripsi.adminjilbabqu.helper.Connection;
+import com.skripsi.adminjilbabqu.helper.utils.CustomDialog;
+import com.skripsi.adminjilbabqu.model.TransaksiModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;

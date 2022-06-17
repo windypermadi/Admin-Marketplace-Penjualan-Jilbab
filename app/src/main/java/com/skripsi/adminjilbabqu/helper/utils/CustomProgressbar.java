@@ -1,4 +1,4 @@
-package com.windypermadi.adminjilbabqu.helper.utils;
+package com.skripsi.adminjilbabqu.helper.utils;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -6,7 +6,7 @@ import android.content.Context;
 import android.view.Window;
 import android.widget.RelativeLayout;
 
-import com.windypermadi.adminjilbabqu.R;
+import com.skripsi.adminjilbabqu.R;
 
 public class CustomProgressbar {
     public static CustomProgressbar customProgress = null;
