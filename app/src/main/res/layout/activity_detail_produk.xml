@@ -252,6 +252,28 @@
                         tools:ignore="Autofill,HardcodedText,UnusedAttribute" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="12dp">
+
+                    <EditText
+                        android:id="@+id/et_deskripsi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorGrey"
+                        android:hint="Deskripsi"
+                        android:gravity="start"
+                        android:textColor="@color/black"
+                        android:minLines="10"
+                        android:textColorHint="@color/black"
+                        android:textSize="@dimen/fontsize15"
+                        tools:ignore="Autofill,HardcodedText,UnusedAttribute" />
+                </com.google.android.material.textfield.TextInputLayout>
+
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 

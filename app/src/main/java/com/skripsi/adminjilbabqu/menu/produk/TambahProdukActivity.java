@@ -55,7 +55,7 @@ import java.util.HashMap;
 
 public class TambahProdukActivity extends AppCompatActivity implements TextWatcher {
     private EditText et_idkategori, et_kategori, et_nama, et_harga, et_jumlah ,
-            et_gambar, et_status, et_diskon;
+            et_gambar, et_status, et_diskon, et_deskripsi;
     private TextView text_simpan;
     private ImageView btn_upload, img_upload;
     ArrayList<HashMap<String, String>> dataKategori = new ArrayList<>();
@@ -137,6 +137,7 @@ public class TambahProdukActivity extends AppCompatActivity implements TextWatch
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_produk);
 
+        et_deskripsi    = findViewById(R.id.et_deskripsi);
         et_idkategori   = findViewById(R.id.et_idkategori);
         et_kategori     = findViewById(R.id.et_kategori);
         et_nama         = findViewById(R.id.et_nama);
@@ -269,7 +270,6 @@ public class TambahProdukActivity extends AppCompatActivity implements TextWatch
             idkategori = ((TextView) view.findViewById(R.id.text_id)).getText().toString();
             String nama_kategori = ((TextView) view.findViewById(R.id.text_nama)).getText().toString();
             et_kategori.setText(nama_kategori);
-            et_idkategori.setText(idkategori);
             alertDialog.dismiss();
         });
 
@@ -364,6 +364,8 @@ public class TambahProdukActivity extends AppCompatActivity implements TextWatch
                     .addMultipartParameter("diskon", et_diskon.getText().toString().trim())
                     .addMultipartParameter("stok", et_jumlah.getText().toString().trim())
                     .addMultipartParameter("idkategori", idkategori)
+                    .addMultipartParameter("kode", et_idkategori.getText().toString().trim())
+                    .addMultipartParameter("deskripsi", et_deskripsi.getText().toString().trim())
                     .setPriority(Priority.HIGH)
                     .build()
                     .getAsJSONObject(new JSONObjectRequestListener() {
@@ -399,6 +401,8 @@ public class TambahProdukActivity extends AppCompatActivity implements TextWatch
                     .addMultipartParameter("diskon", et_diskon.getText().toString().trim())
                     .addMultipartParameter("stok", et_jumlah.getText().toString().trim())
                     .addMultipartParameter("idkategori", idkategori)
+                    .addMultipartParameter("kode", et_idkategori.getText().toString().trim())
+                    .addMultipartParameter("deskripsi", et_deskripsi.getText().toString().trim())
                     .addMultipartFile("uploadedfile", file)
                     .setPriority(Priority.HIGH)
                     .build()

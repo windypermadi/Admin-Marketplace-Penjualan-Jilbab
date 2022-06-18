@@ -12,7 +12,7 @@
         <entry key="app/src/main/res/drawable/btn_red.xml" value="0.20520833333333333" />
         <entry key="app/src/main/res/drawable/btn_stroke_grey3.xml" value="0.20520833333333333" />
         <entry key="app/src/main/res/drawable/circle_button.xml" value="0.20520833333333333" />
-        <entry key="app/src/main/res/layout/activity_detail_produk.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_detail_produk.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_kategori.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_laporan.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2276378980650774" />

@@ -53,13 +53,13 @@ import java.util.HashMap;
 
 public class DetailProdukActivity extends AppCompatActivity {
     private EditText et_idkategori, et_kategori, et_nama, et_harga, et_jumlah,
-            et_status, et_diskon;
+            et_status, et_diskon, et_deskripsi;
     private TextView text_simpan;
     private ImageView btn_upload, img_upload, img;
     ArrayList<HashMap<String, String>> dataKategori = new ArrayList<>();
     String idkategori, status_diskon;
     String idproduk, nama_kategori, nama_produk, gambar2,
-            harga, diskon, harga_diskon, stok, status_diskon2;
+            harga, diskon, harga_diskon, stok, status_diskon2, kode, deskripsi;
 
     //upload
     Uri FilePath;
@@ -93,6 +93,7 @@ public class DetailProdukActivity extends AppCompatActivity {
         text_simpan = findViewById(R.id.text_simpan);
         btn_upload = findViewById(R.id.btn_upload);
         img_upload = findViewById(R.id.img_upload);
+        et_deskripsi = findViewById(R.id.et_deskripsi);
         img = findViewById(R.id.img);
 
         et_harga.addTextChangedListener(new TambahProdukActivity(et_harga));
@@ -127,13 +128,16 @@ public class DetailProdukActivity extends AppCompatActivity {
                                 harga_diskon = responses.optString("harga_diskon");
                                 stok = responses.optString("stok");
                                 status_diskon2 = responses.optString("status_diskon");
+                                kode = responses.optString("kode_produk");
+                                deskripsi = responses.optString("deskripsi");
 
-                                et_idkategori.setText(idkategori);
+                                et_idkategori.setText(kode);
                                 et_kategori.setText(nama_kategori);
                                 et_nama.setText(nama_produk);
                                 et_harga.setText(harga);
                                 et_diskon.setText(diskon);
                                 et_jumlah.setText(stok);
+                                et_deskripsi.setText(deskripsi);
 
                                 if (status_diskon2.equals("Y")){
                                     status_diskon2 = "Y";
@@ -349,7 +353,6 @@ public class DetailProdukActivity extends AppCompatActivity {
             idkategori = ((TextView) view.findViewById(R.id.text_id)).getText().toString();
             String nama_kategori = ((TextView) view.findViewById(R.id.text_nama)).getText().toString();
             et_kategori.setText(nama_kategori);
-            et_idkategori.setText(idkategori);
             alertDialog.dismiss();
         });
 
@@ -445,6 +448,7 @@ public class DetailProdukActivity extends AppCompatActivity {
                     .addMultipartParameter("diskon", et_diskon.getText().toString().trim())
                     .addMultipartParameter("stok", et_jumlah.getText().toString().trim())
                     .addMultipartParameter("idkategori", idkategori)
+                    .addMultipartParameter("deskripsi", et_deskripsi.getText().toString().trim())
                     .setPriority(Priority.HIGH)
                     .build()
                     .getAsJSONObject(new JSONObjectRequestListener() {
@@ -480,6 +484,7 @@ public class DetailProdukActivity extends AppCompatActivity {
                     .addMultipartParameter("diskon", et_diskon.getText().toString().trim())
                     .addMultipartParameter("stok", et_jumlah.getText().toString().trim())
                     .addMultipartParameter("idkategori", idkategori)
+                    .addMultipartParameter("deskripsi", et_deskripsi.getText().toString().trim())
                     .addMultipartFile("uploadedfile", file)
                     .setPriority(Priority.HIGH)
                     .build()
