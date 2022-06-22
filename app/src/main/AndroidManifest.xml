@@ -19,28 +19,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminJilBabQu"
         android:usesCleartextTraffic="true"
-        tools:targetApi="m"
-        tools:ignore="AllowBackup">
+        tools:ignore="AllowBackup"
+        tools:targetApi="m">
         <activity
-            android:name="com.skripsi.adminjilbabqu.menu.LaporanActivity"
+            android:name=".menu.transaksi.DetailTransaksi"
             android:exported="false" />
         <activity
-            android:name="com.skripsi.adminjilbabqu.menu.PenjualanActivity"
+            android:name=".menu.LaporanActivity"
             android:exported="false" />
         <activity
-            android:name="com.skripsi.adminjilbabqu.menu.produk.DetailProdukActivity"
+            android:name=".menu.PenjualanActivity"
             android:exported="false" />
         <activity
-            android:name="com.skripsi.adminjilbabqu.menu.produk.TambahProdukActivity"
+            android:name=".menu.produk.DetailProdukActivity"
             android:exported="false" />
         <activity
-            android:name="com.skripsi.adminjilbabqu.menu.ProdukActivity"
+            android:name=".menu.produk.TambahProdukActivity"
             android:exported="false" />
         <activity
-            android:name="com.skripsi.adminjilbabqu.menu.KategoriActivity"
+            android:name=".menu.ProdukActivity"
             android:exported="false" />
         <activity
-            android:name="com.skripsi.adminjilbabqu.auth.LoginActivity"
+            android:name=".menu.KategoriActivity"
+            android:exported="false" />
+        <activity
+            android:name=".auth.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -49,7 +52,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.skripsi.adminjilbabqu.MainActivity"
+            android:name=".MainActivity"
             android:exported="true" />
     </application>
 

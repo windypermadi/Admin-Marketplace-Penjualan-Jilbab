@@ -218,7 +218,7 @@ public class DetailProdukActivity extends AppCompatActivity {
             dropDownMenu.show();
         });
         findViewById(R.id.text_hapus).setOnClickListener(v -> {
-            hapusData();
+            showDialog();
         });
         findViewById(R.id.text_update).setOnClickListener(v -> {
             String idkategori = et_idkategori.getText().toString().trim();
@@ -258,6 +258,24 @@ public class DetailProdukActivity extends AppCompatActivity {
                 CustomDialog.errorDialog(DetailProdukActivity.this, "Data harus lengkap tidak boleh ada data yang kosong");
             }
         });
+    }
+
+    private void showDialog(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+        alertDialogBuilder.setTitle("Apakah mau menghapus produk ini?");
+        alertDialogBuilder
+                .setMessage("Klik Ya untuk menghapus")
+                .setIcon(R.mipmap.ic_launcher)
+                .setCancelable(false)
+                .setPositiveButton("Ya", (dialog, id) -> {
+                    hapusData();
+                })
+                .setNegativeButton("Tidak", (dialog, id) -> {
+                    dialog.cancel();
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
     private void hapusData() {

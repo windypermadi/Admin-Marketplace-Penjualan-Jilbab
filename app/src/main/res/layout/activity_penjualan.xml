@@ -26,7 +26,7 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/poppins_bold"
                 android:gravity="center_vertical"
-                android:text="Transaksi Penjualan"
+                android:text="Laporan Penjualan"
                 android:textColor="@color/black"
                 android:textSize="@dimen/fontsize18"
                 tools:ignore="Autofill,HardcodedText,TextFields" />

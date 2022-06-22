@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -184,7 +186,7 @@ public class KategoriActivity extends AppCompatActivity {
             final KategoriModel pegawai = KategoriModel.get(i);
             holder.text_nama.setText(pegawai.getNama_kategori());
             holder.img_hapus.setOnClickListener(v -> {
-                HapusData(pegawai.getIdkategori());
+                showDialog(pegawai.getIdkategori());
             });
         }
 
@@ -205,6 +207,24 @@ public class KategoriActivity extends AppCompatActivity {
                 img_hapus = itemView.findViewById(R.id.img_hapus);
             }
         }
+    }
+
+    private void showDialog(String idkategori){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+        alertDialogBuilder.setTitle("Apakah mau menghapus kategori ini?");
+        alertDialogBuilder
+                .setMessage("Klik Ya untuk menghapus")
+                .setIcon(R.mipmap.ic_launcher)
+                .setCancelable(false)
+                .setPositiveButton("Ya", (dialog, id) -> {
+                    HapusData(idkategori);
+                })
+                .setNegativeButton("Tidak", (dialog, id) -> {
+                    dialog.cancel();
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
     private void HapusData(String id) {

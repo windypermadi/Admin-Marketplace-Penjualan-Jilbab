@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".menu.LaporanActivity">
 
     <androidx.cardview.widget.CardView
@@ -55,19 +55,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorGrey"
-            android:maxLines="1"
             android:focusable="false"
+            android:maxLines="1"
+            android:text="Rp 0"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/fontsize23"
             android:textStyle="bold"
-            tools:ignore="Autofill,HardcodedText,UnusedAttribute"
-            android:text="Rp 0" />
+            tools:ignore="Autofill,HardcodedText,UnusedAttribute" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:weightSum="2">
 
@@ -77,14 +77,14 @@
             android:layout_height="45dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:padding="4dp"
-            android:focusable="false"
-            android:hint="Tanggal Mulai"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
             android:background="@drawable/btn_grey_outline"
             android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
-            android:drawablePadding="10dp" />
+            android:drawablePadding="10dp"
+            android:focusable="false"
+            android:hint="Tanggal Mulai"
+            android:padding="4dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
 
         <EditText
             android:id="@+id/et_akhir"
@@ -92,24 +92,24 @@
             android:layout_height="45dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:padding="4dp"
-            android:focusable="false"
-            android:hint="Tanggal Akhir"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
             android:background="@drawable/btn_grey_outline"
             android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
-            android:drawablePadding="10dp" />
+            android:drawablePadding="10dp"
+            android:focusable="false"
+            android:hint="Tanggal Akhir"
+            android:padding="4dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/text_simpan"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/btn_primary"
         android:fontFamily="@font/poppins_medium"
         android:gravity="center"
@@ -118,5 +118,10 @@
         android:textColor="@color/white"
         android:textSize="@dimen/fontsize15"
         tools:ignore="Autofill,HardcodedText,TextFields" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

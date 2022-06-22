@@ -13,6 +13,7 @@
         <entry key="app/src/main/res/drawable/btn_stroke_grey3.xml" value="0.20520833333333333" />
         <entry key="app/src/main/res/drawable/circle_button.xml" value="0.20520833333333333" />
         <entry key="app/src/main/res/layout/activity_detail_produk.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_detail_transaksi.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/activity_kategori.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_laporan.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2276378980650774" />
@@ -28,6 +29,7 @@
         <entry key="app/src/main/res/layout/custom_upload_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/list_kategori.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/model_list_kategori.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/model_list_keranjang_act.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/model_list_penjualan.xml" value="0.25" />
         <entry key="app/src/main/res/layout/model_list_penjualan_sudah.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/model_list_produk.xml" value="0.25" />

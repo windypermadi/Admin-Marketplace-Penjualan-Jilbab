@@ -222,7 +222,7 @@
                             android:layout_toEndOf="@+id/img5"
                             android:fontFamily="@font/poppins_medium"
                             android:padding="8dp"
-                            android:text="Kelola Laporan"
+                            android:text="Laporan Penjualan"
                             android:textColor="@color/black"
                             android:textSize="@dimen/fontsize15"
                             tools:ignore="Autofill,HardcodedText,TextFields" />

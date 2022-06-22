@@ -81,7 +81,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/text_konfirmasi"
+            android:id="@+id/text_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -90,13 +90,13 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="15dp"
-            android:background="@drawable/btn_green"
+            android:background="@drawable/btn_primary"
             android:fontFamily="@font/poppins_medium"
             android:paddingStart="10dp"
             android:paddingTop="4dp"
             android:paddingEnd="10dp"
             android:paddingBottom="4dp"
-            android:text="Konfirmasi"
+            android:text="Lihat Detail"
             android:textColor="@color/white"
             android:textSize="@dimen/fontsize15" />
 

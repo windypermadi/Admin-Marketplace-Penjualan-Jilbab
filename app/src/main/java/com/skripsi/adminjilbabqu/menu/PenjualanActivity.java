@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ import com.skripsi.adminjilbabqu.MainActivity;
 import com.skripsi.adminjilbabqu.R;
 import com.skripsi.adminjilbabqu.helper.Connection;
 import com.skripsi.adminjilbabqu.helper.utils.CustomDialog;
+import com.skripsi.adminjilbabqu.menu.transaksi.DetailTransaksi;
 import com.skripsi.adminjilbabqu.model.TransaksiModel;
 
 import org.json.JSONArray;
@@ -170,8 +172,10 @@ public class PenjualanActivity extends AppCompatActivity {
             holder.text_nama.setText(tr.getNama_pelanggan());
             holder.text_total.setText(tr.getJumlah());
 
-            holder.text_konfirmasi.setOnClickListener(v -> {
-                KonfirmasiBarang(tr.getIdtransaksi());
+            holder.text_detail.setOnClickListener(v -> {
+                Intent a = new Intent(mCtx, DetailTransaksi.class);
+                a.putExtra("idtransaksi", tr.getIdtransaksi());
+                startActivity(a);
             });
         }
 
@@ -182,14 +186,14 @@ public class PenjualanActivity extends AppCompatActivity {
 
         class ProductViewHolder extends RecyclerView.ViewHolder {
             TextView text_nama, text_total;
-            TextView text_konfirmasi;
+            TextView text_detail;
             CardView cv;
 
             ProductViewHolder(View itemView) {
                 super(itemView);
                 text_nama = itemView.findViewById(R.id.text_nama);
                 text_total = itemView.findViewById(R.id.text_total);
-                text_konfirmasi = itemView.findViewById(R.id.text_konfirmasi);
+                text_detail = itemView.findViewById(R.id.text_detail);
                 cv = itemView.findViewById(R.id.cv);
             }
         }
@@ -278,6 +282,12 @@ public class PenjualanActivity extends AppCompatActivity {
             final TransaksiModel tr = TransaksiModel.get(i);
             holder.text_nama.setText(tr.getNama_pelanggan());
             holder.text_total.setText(tr.getJumlah());
+
+            holder.text_detail.setOnClickListener(v -> {
+                Intent a = new Intent(mCtx, DetailTransaksi.class);
+                a.putExtra("idtransaksi", tr.getIdtransaksi());
+                startActivity(a);
+            });
         }
 
         @Override
@@ -286,58 +296,16 @@ public class PenjualanActivity extends AppCompatActivity {
         }
 
         class ProductViewHolder extends RecyclerView.ViewHolder {
-            TextView text_nama, text_total;
+            TextView text_nama, text_total, text_detail;
             CardView cv;
 
             ProductViewHolder(View itemView) {
                 super(itemView);
                 text_nama = itemView.findViewById(R.id.text_nama);
                 text_total = itemView.findViewById(R.id.text_total);
+                text_detail = itemView.findViewById(R.id.text_detail);
                 cv = itemView.findViewById(R.id.cv);
             }
         }
-    }
-
-    private void KonfirmasiBarang(String id) {
-        AndroidNetworking.post(Connection.CONNECT + "AdminPenjualan.php")
-                .addBodyParameter("tag", "konfirmasi")
-                .addBodyParameter("idtransaksi", id)
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        successDialog(PenjualanActivity.this, response.optString("pesan"));
-                    }
-
-                    @Override
-                    public void onError(ANError error) {
-                        if (error.getErrorCode() == 400) {
-                            try {
-                                JSONObject body = new JSONObject(error.getErrorBody());
-                                CustomDialog.errorDialog(PenjualanActivity.this, body.optString("pesan"));
-                            } catch (JSONException ignored) {
-                            }
-                        } else {
-                            CustomDialog.errorDialog(PenjualanActivity.this, "Sambunganmu dengan server terputus. Periksa sambungan internet, lalu coba lagi.");
-                        }
-                    }
-                });
-    }
-
-    public void successDialog(final Context context, final String alertText){
-        final View inflater = LayoutInflater.from(context).inflate(R.layout.custom_success_dialog, null);
-        final AlertDialog.Builder builder = new AlertDialog.Builder(context).setView(inflater);
-        builder.setCancelable(false);
-        final TextView ket = inflater.findViewById(R.id.keterangan);
-        ket.setText(alertText);
-        final AlertDialog alertDialog = builder.create();
-        alertDialog.getWindow().setBackgroundDrawableResource(R.color.transparan);
-        inflater.findViewById(R.id.ok).setOnClickListener(v -> {
-            finish();
-            alertDialog.dismiss();
-        });
-        alertDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        alertDialog.show();
     }
 }
